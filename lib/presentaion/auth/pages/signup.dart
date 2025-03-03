@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:netflix/common/helper/navigation/app_navigation.dart';
 import 'package:netflix/core/config/theme/app_colors.dart';
 import 'package:netflix/data/auth/models/auth/signup_req_params.dart';
-import 'package:netflix/data/auth/repositories/auth/auth.dart';
-import 'package:netflix/data/auth/sources/auth/auth_api_service.dart';
 import 'package:netflix/domain/auth/usecases/suignup.dart';
 import 'package:netflix/presentaion/auth/pages/signin.dart';
 import 'package:netflix/service_locator.dart';
@@ -24,13 +22,11 @@ class _SignupPageState extends State<SignupPage> {
 
   final TextEditingController _usernameController = TextEditingController();
 
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-          minimum: EdgeInsets.only(top: 100, right: 16, left: 16),
+          minimum: EdgeInsets.only(top: 100, right: 16, left: 17),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -45,7 +41,7 @@ class _SignupPageState extends State<SignupPage> {
               ),
               _emailField(),
               SizedBox(
-                height: 25,
+                height: 26,
               ),
               _passField(),
               SizedBox(
@@ -104,11 +100,12 @@ class _SignupPageState extends State<SignupPage> {
       title: 'Sign Up',
       activeColor: AppColors.primary,
       onPressed: () async {
-       await sl<SignupUSeCase>().call( params: SignupReqParams(
+        await sl<SignupUSeCase>().call(
+            params: SignupReqParams(
                 username: _usernameController.text,
                 name: _emailContero.text,
                 password: _passContero.text));
-  },
+      },
       onSuccess: () {},
       onFailure: (error) {
         print(error);
