@@ -26,7 +26,7 @@ class _SignupPageState extends State<SignupPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-          minimum: EdgeInsets.only(top: 100, right: 16, left: 17),
+          minimum: EdgeInsets.only(top: 100, right: 16, left: 16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
