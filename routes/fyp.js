@@ -65,4 +65,28 @@ router.get('/saved-babysitters', authenticateToken, async (req, res) => {
     res.status(500).json({ message: 'Something went wrong', error });
   }
 });
+router.get('/favorite-babysitters', authenticateToken, async (req, res) => {
+  try {
+    const motherData = await Mother.findById(req.mother.id).populate({
+      path: 'favorite_babysitters',
+      match: { available: true }
+    }).lean();
+
+    if (!motherData) return res.status(404).json({ message: 'Mother not found' });
+
+    const favoriteBabysitters = (motherData.favorite_babysitters || []).map(babysitter => {
+      const ratings = babysitter.ratings || [];
+      const avgRating = ratings.length > 0 ? ratings.reduce((sum, r) => sum + r.rating, 0) / ratings.length : 0;
+      return { ...babysitter, avgRating };
+    });
+
+    favoriteBabysitters.sort((a, b) => b.avgRating - a.avgRating);
+    res.json(favoriteBabysitters);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Something went wrong', error });
+  }
+});
+
+
 module.exports = router;

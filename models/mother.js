@@ -46,6 +46,10 @@ const motherSchema = new mongoose.Schema({
       type: [String],
       ref: 'babysitters'
     },
+    favorite_babysitters: {
+      type: [String],
+      ref: 'babysitters'
+    },
     contacts: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: 'babysitters'

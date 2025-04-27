@@ -50,6 +50,7 @@ const getacceptedRoutes = require("./routes/acceptedreq");
 const motherContactRoutes = require("./routes/motherContacts");
 const babysitterContactRoutes = require("./routes/babysitterContacts");
 const searchbyname =require("./routes/serachbyname");
+const support_contact= require("./routes/support");
 app.use(searchbyname)
 app.use(babysitterContactRoutes)
 app.use(motherContactRoutes)
@@ -69,6 +70,7 @@ app.use(deleteRoute); // Use the delete route
 app.use(fyp);
 app.use(availableRoute);
 app.use(updateProfileRoute);
+app.use(support_contact);
 
 app.use("/auth", resetRoutes);
 
