@@ -1,0 +1,10 @@
+ Card(
+                      margin: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                      child: ListTile(
+                        title: Text('${r.childName} (${r.childAge} yrs)'),
+                        subtitle: Text(
+                            'On ${r.date.toLocal().toIso8601String().split("T")[0]} at ${r.time.format(context)}\n'
+                            'Mother: ${r.motherName} (${r.motherPhone})'),
+                        isThreeLine: true,
+                      ),
+                    );
